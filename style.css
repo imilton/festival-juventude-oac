@@ -48,7 +48,7 @@ body{
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
 
 .nav-logo{
-  height:44px;
+  height:100px;
   width:auto;
   object-fit:contain;
   display:block;
@@ -411,7 +411,7 @@ body{
 
 .corais-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));
   gap:10px;
 }
 
@@ -593,7 +593,7 @@ body{
     display:inline-flex;
   }
   .hero-logo-38{
-    width:min(280px,85vw);
+    width:min(340px,92vw);
     margin:0 auto 12px;
   }
   .hero-lema-label{font-size:9px;letter-spacing:2.5px;}
@@ -636,7 +636,7 @@ body{
   .pills{gap:6px;}
   .pill{padding:8px 14px;font-size:9.5px;}
   .corais-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr;
     gap:8px;
   }
   .coral-body{padding:12px 12px 10px;}
