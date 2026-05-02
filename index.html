@@ -2,510 +2,178 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<!-- Mobile-first viewport: prevent auto-zoom on input fields, respect safe areas -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#C8102E">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>38º Aniversário da Juventude - OAC Moçambique</title>
-<meta name="description" content="38º Aniversário da Juventude - Igreja Velha Apostólica em Moçambique. Programa de Encerramento das Festividades, 03 de Maio de 2026.">
-<!-- Preconnect for faster font loading on mobile networks -->
+<title>38º Aniversário da Juventude — OAC Moçambique</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Only load weights actually used — smaller payload on slow connections -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<style>
-  /* ── RESET & BASE ── */
-  *, *::before, *::after {
-    margin: 0; padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent; /* remove grey flash on tap */
-  }
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
-  :root {
-    --red:       #C8102E;
-    --red-dark:  #9B0C22;
-    --white:     #FFFFFF;
-    --gold:      #D4AF37;
-
-    /* Fluid type scale — clamp(min, preferred, max)
-       Scales smoothly from 320px → 480px screens          */
-    --fs-xs:   clamp(0.6rem,  2.5vw, 0.75rem);
-    --fs-sm:   clamp(0.7rem,  3vw,   0.85rem);
-    --fs-base: clamp(0.75rem, 3.5vw, 1rem);
-    --fs-md:   clamp(1rem,    5vw,   1.4rem);
-    --fs-lg:   clamp(1.3rem,  6vw,   1.75rem);
-    --fs-xl:   clamp(1.6rem,  7.5vw, 2.2rem);
-    --fs-hero: clamp(4rem,    18vw,  6rem);
-
-    /* Spacing */
-    --sp-xs: clamp(6px,  2vw,  10px);
-    --sp-sm: clamp(10px, 3vw,  16px);
-    --sp-md: clamp(16px, 5vw,  28px);
-    --sp-lg: clamp(28px, 8vw,  48px);
-
-    /* Safe area insets (notch / home bar) */
-    --safe-top:    env(safe-area-inset-top,    0px);
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
-    --safe-left:   env(safe-area-inset-left,   0px);
-    --safe-right:  env(safe-area-inset-right,  0px);
-  }
-
-  html {
-    /* Prevent font size inflation on orientation change */
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-  }
-
-  body {
-    font-family: 'Montserrat', system-ui, sans-serif;
-    background: #e8e8e8;        /* visible behind the card on large screens */
-    min-height: 100dvh;         /* dvh = dynamic viewport height (mobile browsers) */
-    overflow-x: hidden;
-    /* Card layout: centred on tablet/desktop, full-bleed on mobile */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* The actual page card */
-  .page-card {
-    width: 100%;
-    max-width: 480px;
-    background: var(--white);
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 40px rgba(0,0,0,0.15);
-    /* Honour notch on the sides when rotated */
-    padding-left: var(--safe-left);
-    padding-right: var(--safe-right);
-  }
-
-  /* ── HEADER ── */
-  .top-bar {
-    background: var(--white);
-    padding: var(--sp-sm) var(--sp-md);
-    /* Respect top notch (iPhone) */
-    padding-top: calc(var(--sp-sm) + var(--safe-top));
-    display: flex;
-    align-items: center;
-    gap: var(--sp-sm);
-    border-bottom: 1px solid #eee;
-    /* Minimum touch target height */
-    min-height: 60px;
-  }
-
-  .logo-text { line-height: 1.1; color: #111; flex-shrink: 0; }
-  .logo-text .the  { font-size: var(--fs-xs); font-weight: 600; display: block; color: #444; }
-  .logo-text .oac  { font-size: clamp(1.3rem, 6vw, 1.6rem); font-weight: 900;
-                     color: var(--red); line-height: 1; display: block; }
-  .logo-text .full { font-size: clamp(0.45rem, 1.8vw, 0.6rem); color: #555;
-                     letter-spacing: 0.5px; display: block; white-space: nowrap; }
-
-  .divider-v { width: 1px; height: 36px; background: #ddd; flex-shrink: 0; }
-
-  .church-name {
-    font-size: var(--fs-sm);
-    font-weight: 600;
-    color: #222;
-    line-height: 1.35;
-    /* Wrap gracefully on very small screens */
-    word-break: break-word;
-    hyphens: auto;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    background: linear-gradient(160deg, var(--red) 0%, var(--red-dark) 100%);
-    padding: var(--sp-lg) var(--sp-md) calc(var(--sp-lg) + 24px);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    opacity: 0.12;
-    pointer-events: none;
-    /* GPU-accelerate the SVG layer */
-    will-change: transform;
-  }
-  .hero-bg svg { width: 100%; height: 100%; }
-
-  /* Torn paper bottom edge */
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -1px; left: 0;
-    width: 100%; height: 48px;
-    background: var(--white);
-    clip-path: polygon(
-      0% 100%, 0% 65%, 3% 42%, 6% 58%, 9% 72%, 12% 52%,
-      15% 32%, 18% 55%, 21% 68%, 24% 48%, 27% 30%, 30% 52%,
-      33% 65%, 36% 44%, 39% 26%, 42% 48%, 45% 62%, 48% 42%,
-      51% 24%, 54% 44%, 57% 60%, 60% 40%, 63% 22%, 66% 42%,
-      69% 58%, 72% 36%, 75% 20%, 78% 40%, 81% 55%, 84% 34%,
-      87% 16%, 90% 38%, 93% 52%, 96% 32%, 100% 48%, 100% 100%
-    );
-  }
-
-  /* Anniversary badge — fluid sizing */
-  .anniversary-badge {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(2px, 1vw, 6px);
-    animation: fadeDown 0.7s ease both;
-    /* Prevent layout shift while font loads */
-    min-height: clamp(70px, 20vw, 100px);
-  }
-
-  .badge-number {
-    font-size: var(--fs-hero);
-    font-weight: 900;
-    color: var(--white);
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-  }
-
-  .badge-sup-block {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: clamp(8px, 2.5vw, 14px);
-  }
-
-  .badge-ordinal {
-    font-size: clamp(1rem, 5vw, 1.4rem);
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1;
-  }
-
-  .badge-label .aniversario {
-    display: block;
-    font-size: clamp(0.75rem, 3.8vw, 1.1rem);
-    font-weight: 900;
-    color: var(--white);
-    letter-spacing: 0.15em;
-    line-height: 1.3;
-    text-transform: uppercase;
-  }
-  .badge-label .da-juventude {
-    display: block;
-    font-size: clamp(0.6rem, 3vw, 0.85rem);
-    font-weight: 600;
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  /* ── LEMA ── */
-  .lema-section {
-    padding: var(--sp-lg) var(--sp-md) var(--sp-sm);
-    text-align: center;
-  }
-
-  .sob-o-lema {
-    font-size: var(--fs-xl);
-    font-weight: 900;
-    color: var(--red);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: var(--sp-sm);
-    animation: fadeUp 0.6s 0.2s ease both;
-    /* Prevent layout overflow on tiny screens */
-    word-break: break-word;
-  }
-
-  .lema-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: var(--fs-lg);
-    font-weight: 700;
-    color: #222;
-    line-height: 1.55;
-    margin: 0 auto var(--sp-md);
-    animation: fadeUp 0.6s 0.35s ease both;
-  }
-
-  /* ── BUILDING ── */
-  .building-strip {
-    width: 100%;
-    /* Fluid height so it looks right on every screen */
-    height: clamp(100px, 28vw, 140px);
-    position: relative;
-    overflow: visible;
-    background: #ebebeb;
-    flex-shrink: 0;
-  }
-
-  .building-strip::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 0;
-    width: 100%; height: 30px;
-    background: var(--white);
-    clip-path: polygon(
-      0% 0%, 4% 58%, 8% 28%, 12% 68%, 16% 18%, 20% 52%, 24% 78%,
-      28% 42%, 32% 14%, 36% 48%, 40% 70%, 44% 36%, 48% 8%, 52% 44%,
-      56% 66%, 60% 32%, 64% 6%, 68% 40%, 72% 62%, 76% 28%, 80% 6%,
-      84% 38%, 88% 62%, 92% 28%, 96% 52%, 100% 18%, 100% 0%
-    );
-    z-index: 3;
-  }
-
-  .building-svg { width: 100%; height: 100%; }
-
-  /* Dove — fluid size, anchored relative to strip */
-  .dove-wrap {
-    position: absolute;
-    right: clamp(12px, 4vw, 24px);
-    bottom: clamp(-30px, -8vw, -20px);
-    width: clamp(60px, 17vw, 90px);
-    z-index: 10;
-    animation: float 4s ease-in-out infinite;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-    /* GPU hint */
-    will-change: transform;
-  }
-
-  /* ── FOOTER ── */
-  .footer-block {
-    background: var(--red);
-    padding: var(--sp-lg) var(--sp-md);
-    /* Respect home-bar at bottom */
-    padding-bottom: calc(var(--sp-lg) + var(--safe-bottom));
-    text-align: center;
-    position: relative;
-    margin-top: clamp(30px, 10vw, 50px);
-    /* Stretch to fill remaining space on short phones */
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .footer-block::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 0;
-    width: 100%; height: 38px;
-    background: var(--white);
-    clip-path: polygon(
-      0% 0%, 3% 62%, 7% 30%, 11% 70%, 15% 20%, 19% 54%, 23% 80%,
-      27% 44%, 31% 14%, 35% 52%, 39% 74%, 43% 40%, 47% 10%, 51% 46%,
-      55% 70%, 59% 34%, 63% 8%, 67% 44%, 71% 66%, 75% 32%, 79% 8%,
-      83% 42%, 87% 66%, 91% 32%, 95% 56%, 100% 22%, 100% 0%
-    );
-    z-index: 2;
-  }
-
-  .footer-title {
-    font-size: var(--fs-xl);
-    font-weight: 900;
-    color: var(--white);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    line-height: 1.2;
-    margin-bottom: var(--sp-xs);
-    animation: fadeUp 0.6s 0.5s ease both;
-  }
-
-  .footer-subtitle {
-    font-size: var(--fs-xs);
-    font-weight: 600;
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: var(--sp-xs);
-    animation: fadeUp 0.6s 0.6s ease both;
-  }
-
-  .footer-date {
-    font-size: var(--fs-sm);
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: 0.06em;
-    animation: fadeUp 0.6s 0.7s ease both;
-  }
-
-  /* Coming soon badge — minimum tap target 44×44px */
-  .coming-soon-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--white);
-    color: var(--red);
-    font-size: var(--fs-xs);
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 10px clamp(16px, 5vw, 24px);
-    border-radius: 999px;
-    margin-top: var(--sp-sm);
-    min-height: 44px;          /* WCAG / Apple HIG touch target */
-    animation: pulse 2.5s ease-in-out infinite;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0)   rotate(-3deg); }
-    50%       { transform: translateY(-9px) rotate(3deg); }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1;    transform: scale(1);    }
-    50%       { opacity: 0.85; transform: scale(1.04); }
-  }
-
-  /* ── RESPECT REDUCED MOTION ── */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-    }
-  }
-
-  /* ── LANDSCAPE PHONE: keep readable without scrolling too much ── */
-  @media (max-height: 500px) and (orientation: landscape) {
-    .hero          { padding-top: var(--sp-md); padding-bottom: var(--sp-lg); }
-    .badge-number  { font-size: clamp(2.5rem, 12vw, 4rem); }
-    .lema-section  { padding-top: var(--sp-md); }
-    .building-strip{ height: 80px; }
-    .footer-block  { padding-top: var(--sp-md); }
-  }
-
-  /* ── TABLET / DESKTOP: centre the card, show surrounding bg ── */
-  @media (min-width: 481px) {
-    body { padding: 32px 0; background: #d0d0d0; }
-    .page-card { border-radius: 16px; overflow: hidden; min-height: auto; }
-  }
-</style>
 </head>
 <body>
-<div class="page-card">
 
-<!-- ── HEADER ── -->
-<header class="top-bar">
-  <div class="logo-text">
-    <span class="the">The</span>
-    <span class="oac">OAC</span>
-    <span class="full">OLD APOSTOLIC CHURCH</span>
-  </div>
-  <div class="divider-v"></div>
-  <p class="church-name">Igreja Velha Apostólica<br>em Moçambique</p>
-</header>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="#">
+    <div class="nav-oac">OAC</div>
+    <div class="nav-divider"></div>
+    <div class="nav-info">
+      <div class="nav-info-top">Igreja Velha Apostólica</div>
+      <div class="nav-info-bot">Moçambique</div>
+    </div>
+  </a>
+</nav>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <svg viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <ellipse cx="60"  cy="250" rx="24" ry="50" fill="white"/>
-      <ellipse cx="60"  cy="185" rx="14" ry="32" fill="white"/>
-      <rect x="47"  y="152" width="11" height="50" rx="5" fill="white" transform="rotate(-20,52,177)"/>
-      <rect x="64"  y="148" width="11" height="58" rx="5" fill="white" transform="rotate(16,69,177)"/>
+  <div class="hero-bg"></div>
+  <div class="hero-bar"></div>
+  <div class="hero-watermark">OAC</div>
 
-      <ellipse cx="170" cy="255" rx="22" ry="48" fill="white"/>
-      <ellipse cx="170" cy="186" rx="13" ry="30" fill="white"/>
-      <rect x="158" y="154" width="10" height="46" rx="5" fill="white" transform="rotate(-24,163,177)"/>
-      <rect x="174" y="150" width="10" height="56" rx="5" fill="white" transform="rotate(18,179,177)"/>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        38º Aniversário da Juventude
+      </div>
 
-      <ellipse cx="290" cy="252" rx="25" ry="50" fill="white"/>
-      <ellipse cx="290" cy="183" rx="15" ry="33" fill="white"/>
-      <rect x="277" y="149" width="12" height="50" rx="6" fill="white" transform="rotate(-18,283,174)"/>
-      <rect x="294" y="145" width="12" height="60" rx="6" fill="white" transform="rotate(20,300,174)"/>
+      <img class="hero-logo"  
+      src='img/aniversario-removebg-preview.png'
+        alt="38º Aniversário da Juventude">
 
-      <ellipse cx="410" cy="253" rx="23" ry="48" fill="white"/>
-      <ellipse cx="410" cy="185" rx="14" ry="31" fill="white"/>
-      <rect x="398" y="152" width="11" height="48" rx="5" fill="white" transform="rotate(-22,403,176)"/>
-      <rect x="414" y="148" width="11" height="58" rx="5" fill="white" transform="rotate(17,419,176)"/>
-    </svg>
+      <p class="hero-lema-label">Sob o Lema</p>
+      <p class="hero-lema">
+        Formação do Jovem Rumo ao<br>
+        Futuro da <em>Igreja Velha Apostólica</em>
+      </p>
+
+      <a class="hero-cta" href="#programa">
+        Ver Programa
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
+      <p class="hero-date-badge">
+        <strong>03 de Maio de 2026</strong> &nbsp;·&nbsp; Moçambique
+      </p>
+    </div>
+
+    <div class="hero-right">
+      <img class="hero-pomba"
+           src='img/pombo-removebg-preview.png'
+           alt="Pomba da paz — OAC">
+    </div>
   </div>
 
-  <div class="anniversary-badge">
-    <span class="badge-number">38</span>
-    <div class="badge-sup-block">
-      <span class="badge-ordinal">º</span>
-      <div class="badge-label">
-        <span class="aniversario">ANIVERSÁRIO</span>
-        <span class="da-juventude">DA JUVENTUDE</span>
+  <div class="scroll-hint">
+    <div class="scroll-dot"></div>
+    Scroll
+  </div>
+  <div class="hero-torn"></div>
+</section>
+
+<!-- PROGRAMA -->
+<section class="section section-alt" id="programa">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">03 de Maio de 2026</div>
+      <h2 class="section-title">PROGRAMA DE <em>ENCERRAMENTO</em></h2>
+      <p class="section-desc">Das Festividades do 38º Aniversário da Juventude da Igreja Velha Apostólica em Moçambique</p>
+    </div>
+
+    <div class="programa-card">
+      <div class="programa-header">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <div>
+          <div class="programa-header-title">PROGRAMA DE ENCERRAMENTO DAS FESTIVIDADES</div>
+          <div class="programa-header-sub">Igreja Velha Apostólica em Moçambique · 03 de Maio de 2026</div>
+        </div>
+      </div>
+
+      <div class="programa-row has-hora">
+        <div class="programa-cell programa-hora">08H30</div>
+        <div class="programa-cell programa-acto">Chegada do Apóstolo</div>
+        <div class="programa-cell programa-resp">—</div>
+      </div>
+      <div class="programa-row">
+        <div class="programa-cell programa-hora"></div>
+        <div class="programa-cell programa-acto">Apresentação da Agenda</div>
+        <div class="programa-cell programa-resp"><span class="programa-badge">MC</span></div>
+      </div>
+      <div class="programa-row">
+        <div class="programa-cell programa-hora"></div>
+        <div class="programa-cell programa-acto">Apresentação dos Convidados</div>
+        <div class="programa-cell programa-resp"><span class="programa-badge">CCD</span></div>
+      </div>
+      <div class="programa-row">
+        <div class="programa-cell programa-hora"></div>
+        <div class="programa-cell programa-acto">Apresentação da Mensagem da Juventude</div>
+        <div class="programa-cell programa-resp"><span class="programa-badge">Jovens</span></div>
+      </div>
+      <div class="programa-row">
+        <div class="programa-cell programa-hora"></div>
+        <div class="programa-cell programa-acto">Apresentação da Mensagem da CCD</div>
+        <div class="programa-cell programa-resp"><span class="programa-badge">CCD</span></div>
+      </div>
+      <div class="programa-divider">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Apresentação dos Corais das Juventudes — 13H00 às 17H00
+      </div>
+      <div class="programa-row has-hora">
+        <div class="programa-cell programa-hora">13H00–17H00</div>
+        <div class="programa-cell programa-acto">Programa Recreativo — Actuação dos Corais</div>
+        <div class="programa-cell programa-resp">Jovens</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── LEMA ── -->
-<section class="lema-section">
-  <h2 class="sob-o-lema">SOB O LEMA</h2>
-  <p class="lema-text">
-    Formação do Jovem Rumo ao<br>
-    Futuro da Igreja Velha Apostólica
-  </p>
+<!-- CORAIS -->
+<section class="section corais-section" id="corais">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Participantes</div>
+      <h2 class="section-title">CORAIS <em>EM ACTUAÇÃO</em></h2>
+      <p class="section-desc">Todos os corais das juventudes participantes no programa — 5 minutos cada</p>
+    </div>
+
+    <div class="corais-controls">
+      <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="search" id="searchInput" placeholder="Pesquisar coral..." oninput="filterCorais()" autocomplete="off">
+      </div>
+      <div class="pills" id="pills"></div>
+    </div>
+
+    <div class="corais-stats">
+      <div>Total: <span id="statTotal">0</span></div>
+      <div>A mostrar: <span id="statVis">0</span></div>
+    </div>
+
+    <div class="corais-grid" id="grid"></div>
+  </div>
 </section>
 
-<!-- ── BUILDING + DOVE ── -->
-<div class="building-strip">
-  <svg class="building-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <rect width="480" height="130" fill="#ebebeb"/>
-    <!-- Main building -->
-    <rect x="20"  y="28" width="440" height="102" fill="#C8102E"/>
-    <!-- Roof accent -->
-    <rect x="20"  y="26" width="440" height="8"   fill="#9B0C22"/>
-    <!-- Windows -->
-    <rect x="45"  y="48" width="46" height="40" rx="2" fill="white" opacity="0.92"/>
-    <rect x="108" y="48" width="46" height="40" rx="2" fill="white" opacity="0.92"/>
-    <rect x="171" y="48" width="46" height="40" rx="2" fill="white" opacity="0.92"/>
-    <rect x="234" y="48" width="46" height="40" rx="2" fill="white" opacity="0.92"/>
-    <rect x="297" y="48" width="46" height="40" rx="2" fill="white" opacity="0.92"/>
-    <rect x="360" y="48" width="46" height="40" rx="2" fill="white" opacity="0.92"/>
-    <!-- Door -->
-    <rect x="213" y="82" width="54" height="48" rx="3" fill="#7a0000"/>
-    <!-- Left flank -->
-    <rect x="0"   y="55" width="24" height="75" fill="#d8d8d8"/>
-    <!-- Right flank -->
-    <rect x="456" y="55" width="24" height="75" fill="#d8d8d8"/>
-  </svg>
-
-  <!-- Dove -->
-  <div class="dove-wrap" role="img" aria-label="Pomba branca com ramo de oliveira">
-    <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="50" cy="48" rx="22" ry="13" fill="white"/>
-      <circle  cx="71" cy="40" r="10"           fill="white"/>
-      <polygon points="79,39 88,41 79,43"        fill="#D4AF37"/>
-      <line x1="79" y1="53" x2="94" y2="63" stroke="#4a7c59" stroke-width="2"/>
-      <ellipse cx="87" cy="57" rx="5" ry="3" fill="#5a9c69" transform="rotate(-20,87,57)"/>
-      <ellipse cx="93" cy="63" rx="5" ry="3" fill="#5a9c69" transform="rotate(10,93,63)"/>
-      <path d="M48 42 Q30 20 10 30 Q25 38 42 50 Z"  fill="white" stroke="#ddd" stroke-width="0.5"/>
-      <path d="M48 44 Q28 28 8 42 Q22 46 44 52 Z"   fill="white" opacity="0.7"/>
-      <path d="M42 48 Q25 36 14 35" stroke="#eee" stroke-width="1" fill="none"/>
-      <path d="M40 50 Q22 40 12 40" stroke="#eee" stroke-width="1" fill="none"/>
-      <path d="M30 54 Q20 65 10 60 Q18 56 28 50 Z"  fill="white"/>
-      <path d="M32 55 Q22 68 14 66 Q20 60 30 52 Z"  fill="white" opacity="0.8"/>
-    </svg>
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer-crowd"></div>
+  <div class="footer-inner">
+    <img class="footer-pomba"
+         src='img/pombo-removebg-preview.png'
+         alt="Pomba">
+    <h2 class="footer-title">PROGRAMA DE ENCERRAMENTO</h2>
+    <p class="footer-sub">Das Festividades · 38º Aniversário da Juventude</p>
+    <p class="footer-date">03 de Maio de 2026</p>
+    <div class="footer-line"></div>
+    <p class="footer-bottom">Igreja Velha Apostólica em Moçambique &nbsp;·&nbsp; OLD APOSTOLIC CHURCH</p>
   </div>
-</div>
-
-<!-- ── FOOTER ── -->
-<footer class="footer-block">
-  <p class="footer-title">PROGRAMA</p>
-  <p class="footer-subtitle">DE ENCERRAMENTO DAS FESTIVIDADES</p>
-  <p class="footer-date">03 de Maio de 2026</p>
-  <span class="coming-soon-badge">🕐 Em Breve / Coming Soon</span>
 </footer>
 
-</div><!-- /.page-card -->
+<script src="app.js" defer></script>
 </body>
 </html>

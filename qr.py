@@ -31,7 +31,7 @@ print(f"\n[1/4] A gerar QR para:\n      {URL}\n")
 
 qr = qrcode.QRCode(
     version=4,
-    error_correction=qrcode.constants.ERROR_CORRECT_H,
+    error_correction=qrcode.constants.ERROR_CORRECT_H, # type: ignore
     box_size=12,
     border=2,
 )
