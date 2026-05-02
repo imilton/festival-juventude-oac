@@ -9,14 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
   <a class="nav-brand" href="#">
-    <div class="nav-oac">OAC</div>
+    <img class="nav-logo" src="img/Logo-removebg-preview.png" alt="OAC — Old Apostolic Church">
     <div class="nav-divider"></div>
     <div class="nav-info">
       <div class="nav-info-top">Igreja Velha Apostólica</div>
@@ -34,13 +33,15 @@
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-tag">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
         38º Aniversário da Juventude
       </div>
 
-      <img class="hero-logo"  
-      src='img/aniversario-removebg-preview.png'
-        alt="38º Aniversário da Juventude">
+      <img class="hero-logo-38"
+           src="img/aniversario-removebg-preview.png"
+           alt="38º Aniversário da Juventude">
 
       <p class="hero-lema-label">Sob o Lema</p>
       <p class="hero-lema">
@@ -50,7 +51,9 @@
 
       <a class="hero-cta" href="#programa">
         Ver Programa
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
       </a>
 
       <p class="hero-date-badge">
@@ -60,16 +63,11 @@
 
     <div class="hero-right">
       <img class="hero-pomba"
-           src='img/pombo-removebg-preview.png'
+           src="img/pombo-removebg-preview.png"
            alt="Pomba da paz — OAC">
     </div>
   </div>
 
-  <div class="scroll-hint">
-    <div class="scroll-dot"></div>
-    Scroll
-  </div>
-  <div class="hero-torn"></div>
 </section>
 
 <!-- PROGRAMA -->
@@ -84,12 +82,14 @@
     <div class="programa-card">
       <div class="programa-header">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8"  y1="2" x2="8"  y2="6"/>
+          <line x1="3"  y1="10" x2="21" y2="10"/>
         </svg>
         <div>
           <div class="programa-header-title">PROGRAMA DE ENCERRAMENTO DAS FESTIVIDADES</div>
-          <div class="programa-header-sub">Igreja Velha Apostólica em Moçambique · 03 de Maio de 2026</div>
+          <div class="programa-header-sub"><strong>The OAC</strong> · 03 de Maio de 2026</div>
         </div>
       </div>
 
@@ -119,7 +119,9 @@
         <div class="programa-cell programa-resp"><span class="programa-badge">CCD</span></div>
       </div>
       <div class="programa-divider">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
         Apresentação dos Corais das Juventudes — 13H00 às 17H00
       </div>
       <div class="programa-row has-hora">
@@ -143,7 +145,8 @@
     <div class="corais-controls">
       <div class="search-wrap">
         <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
         <input type="search" id="searchInput" placeholder="Pesquisar coral..." oninput="filterCorais()" autocomplete="off">
       </div>
@@ -164,8 +167,8 @@
   <div class="footer-crowd"></div>
   <div class="footer-inner">
     <img class="footer-pomba"
-         src='img/pombo-removebg-preview.png'
-         alt="Pomba">
+         src="img/pombo-removebg-preview.png"
+         alt="Pomba da paz">
     <h2 class="footer-title">PROGRAMA DE ENCERRAMENTO</h2>
     <p class="footer-sub">Das Festividades · 38º Aniversário da Juventude</p>
     <p class="footer-date">03 de Maio de 2026</p>
